@@ -40,7 +40,7 @@ jobs:
           # 5. Run Preprocessing Script
           - name: Run Preprocessing Script
             working-directory: ./preprocessing
-            run: python preprocessing/automate_preprocessing.py
+            run: python automate_preprocessing.py
 
           # 6. Upload Processed Data Artifact
           - name: Upload Processed Data Artifact
