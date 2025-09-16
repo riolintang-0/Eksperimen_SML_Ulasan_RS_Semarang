@@ -35,7 +35,7 @@ jobs:
 
            # 4. DOWNLOAD DATA NLTK (TAMBAHKAN BLOK INI)
           - name: Download NLTK Stopwords
-            run: python -m nltk.downloader stopwords punkt
+            run: python -m nltk.downloader stopwords punkt_tab
 
           # 5. Run Preprocessing Script
           - name: Run Preprocessing Script
