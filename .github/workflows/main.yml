@@ -17,29 +17,33 @@ jobs:
 
     # Langkah-langkah (steps) yang akan dieksekusi secara berurutan
     steps:
-      # 1. Mengunduh kode dari repository Anda ke server
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+          # 1. Checkout Repository
+          - name: Checkout Repository
+            uses: actions/checkout@v4
 
-      # 2. Menyiapkan lingkungan Python versi 3.9
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
+          # 2. Set up Python
+          - name: Set up Python
+            uses: actions/setup-python@v4
+            with:
+              python-version: '3.11'
 
-      # 3. Menginstall semua library yang dibutuhkan dari requirements.txt
-      - name: Install Dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          # 3. Install Dependencies
+          - name: Install Dependencies
+            run: |
+              python -m pip install --upgrade pip
+              pip install -r requirements.txt
 
-      # 4. Menjalankan skrip preprocessing
-      - name: Run Preprocessing Script
-        run: python preprocessing/automate_preprocessing.py
+           # 4. DOWNLOAD DATA NLTK (TAMBAHKAN BLOK INI)
+          - name: Download NLTK Stopwords
+            run: python -m nltk.downloader stopwords punkt
 
-      # 5. Mengunggah hasil preprocessing sebagai "artifact"
-      - name: Upload Processed Data Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: processed-data
-          path: preprocessing/data_processed/dataset_rs_processed.csv
+          # 5. Run Preprocessing Script
+          - name: Run Preprocessing Script
+            run: python preprocessing/automate_preprocessing.py
+
+          # 6. Upload Processed Data Artifact
+          - name: Upload Processed Data Artifact
+            uses: actions/upload-artifact@v4
+            with:
+              name: processed-data
+              path: preprocessing/data_processed/dataset_rs_processed.csv
