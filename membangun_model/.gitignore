@@ -3,3 +3,7 @@ venv/
 
 # Python cache
 __pycache__/
+
+
+# MLflow local tracking data
+mlruns/
