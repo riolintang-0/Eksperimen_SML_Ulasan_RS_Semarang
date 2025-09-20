@@ -2,7 +2,7 @@ import pandas as pd
 import dagshub
 import mlflow
 import mlflow.sklearn
-import os
+import joblib
 import time
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -12,12 +12,10 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 
 # ==============================================================================
-# 1. KONFIGURASI DAGSHUB (BAGIAN BARU)
+# 1. KONFIGURASI DAGSHUB
 # ==============================================================================
-# Ganti dengan kredensial DagsHub Anda
 dagshub.init(repo_owner='riolintang-0', repo_name='Eksperimen_SML_Ulasan_RS_Semarang', mlflow=True)
 
-# (Sisa kode untuk memuat kamus dan data tetap sama...)
 def load_kamus(file_path):
     try:
         df = pd.read_csv(file_path)
@@ -83,6 +81,12 @@ with mlflow.start_run():
     mlflow.log_figure(fig, "confusion_matrix.png")
 
     # Log model
-    mlflow.sklearn.log_model(best_model, "best_model")
+    # 1. Simpan model ke file lokal
+    model_filename = "best_model.joblib"
+    joblib.dump(best_model, model_filename)
+
+    # 2. Log file tersebut sebagai artefak ke DagsHub
+    mlflow.log_artifact(model_filename, artifact_path="model")
+
 
 print("\nEksperimen advance selesai. Periksa hasilnya di tab 'Experiments' repositori DagsHub Anda.")
