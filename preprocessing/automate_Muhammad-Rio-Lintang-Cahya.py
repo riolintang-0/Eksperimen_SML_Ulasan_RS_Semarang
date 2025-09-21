@@ -83,7 +83,7 @@ def run_preprocessing(input_path, output_path):
     print("Memulai proses preprocessing...")
 
     # Memuat data
-    df = pd.read_excel(input_path)
+    df = pd.read_csv(input_path)
     print(f"Data berhasil dimuat dari {input_path}")
 
     # Asumsikan kolom ulasan bernama 'ulasan'. Sesuaikan jika berbeda.
@@ -99,7 +99,7 @@ def run_preprocessing(input_path, output_path):
 # Blok ini akan dieksekusi hanya jika file ini dijalankan secara langsung
 if __name__ == "__main__":
     # Tentukan path input dan output
-    raw_data_path = '../data_raw/dataset_rs.xlsx'
+    raw_data_path = '../data_raw/dataset_rs.csv'
     processed_data_path = './data_processed/dataset_rs_processed.csv'
     
     # Jalankan fungsi utama
