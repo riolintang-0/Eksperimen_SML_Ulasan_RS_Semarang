@@ -23,8 +23,8 @@ def casefolding(text):
     return text
 
 def normalisasi(text):
-    slang_dict = pd.read_csv('new_kamusalay.csv', encoding='latin-1', header=None)
-    slang_dict = slang_dict.rename(columns={0: 'original', 1: 'replacement'})
+   # BARU
+    slang_dict = pd.read_csv('new_kamusalay.csv', encoding='latin-1', header=None, names=['original', 'replacement'], sep=',')
 
     slang_dict.tail()
 
