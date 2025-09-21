@@ -83,7 +83,7 @@ def run_preprocessing(input_path, output_path):
     print("Memulai proses preprocessing...")
 
     # Memuat data
-    df = pd.read_csv(input_path)
+    df = pd.read_csv(input_path, sep=';')
     print(f"Data berhasil dimuat dari {input_path}")
 
     # Asumsikan kolom ulasan bernama 'ulasan'. Sesuaikan jika berbeda.
